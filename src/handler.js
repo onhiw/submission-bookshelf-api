@@ -72,7 +72,11 @@ const addBookHandler = (request, h) => {
 const fetchAllBooksHandler = () => ({
     status: 'success',
     data: {
-        books,
+        books: books.map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+        })),
     },
 });
 
@@ -92,7 +96,7 @@ const fetchDetailBookByIdHandler = (request, h) => {
 
     const response = h.response({
         status: 'fail',
-        message: 'Catatan tidak ditemukan',
+        message: 'Buku tidak ditemukan',
     });
     response.code(404);
 
